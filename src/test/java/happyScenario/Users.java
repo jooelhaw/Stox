@@ -60,13 +60,12 @@ public class Users {
         }catch (Exception e){
             System.out.println("Not Found Error message -> unique name");
             // Thread.sleep(1000);
-            // driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[1]/div[1]/div[3]/button[1]")).click(); // click add button
             driver.findElement(By.xpath("//*[@id=\"kt_app_body\"]/div[3]/div[1]/div[6]/button[1]")).sendKeys(Keys.ENTER);
         }
 
     }
 
-    static void editUser(WebDriver driver) throws InterruptedException {
+    static void editLastUser(WebDriver driver) throws InterruptedException {
         Thread.sleep(3000);
 //        WebElement userID = driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[3]/div[1]/table[1]/tbody[1]/tr[1]/td[1]/span[1]"));
 //        driver.get("https://backofficetest.stox-eg.com/users/" + userID.getText() + "/edit");
