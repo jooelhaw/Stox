@@ -1,0 +1,8 @@
+Notifications
+//*[@id="kt_topbar_notifications_1"]/div[1]/div[1]/div/div[2]/a
+//*[@id="kt_topbar_notifications_1"]/div[1]/div[2]/div/div[2]/a
+//*[@id="kt_topbar_notifications_1"]/div[1]/div[3]/div/div[2]/a
+//*[@id="kt_topbar_notifications_1"]/div[1]/div[4]/div/div[2]/a
+Last notification
+//*[@id="kt_topbar_notifications_1"]/div[1]/div[279]/div/div[2]/a
+
