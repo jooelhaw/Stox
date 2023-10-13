@@ -7,12 +7,12 @@ import org.openqa.selenium.WebElement;
 
 public class Users {
     private static Integer userCount = 0;
-    public Users(WebDriver driver){
+    public Users(WebDriver driver) throws InterruptedException {
         // open users page
-        driver.findElement(By.xpath("//*[@id=\"#kt_app_sidebar_menu\"]/div[1]/span")).click();
+        driver.findElement(By.xpath("/html/body/div[1]/div/div[2]/div[1]/div[2]/div/div/div[1]/span")).click();
         driver.findElement(By.xpath("//*[@id=\"#kt_app_sidebar_menu\"]/div[1]/div/div/a[1]")).click();
     }
-    static void deleteLastUser(WebDriver driver) throws InterruptedException {
+    void deleteLastUser(WebDriver driver) throws InterruptedException {
         Thread.sleep(3000);
         driver.findElement(By.xpath("//div[@id='app']/div/div[2]/div[3]/div/table/tbody/tr/td[5]/button")).click();
         Thread.sleep(1000);
@@ -65,13 +65,15 @@ public class Users {
 
     }
 
-    static void editLastUser(WebDriver driver) throws InterruptedException {
-        Thread.sleep(3000);
+    void editLastUser(WebDriver driver) throws InterruptedException {
+        Thread.sleep(1000);
 //        WebElement userID = driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[3]/div[1]/table[1]/tbody[1]/tr[1]/td[1]/span[1]"));
 //        driver.get("https://backofficetest.stox-eg.com/users/" + userID.getText() + "/edit");
         driver.findElement(By.xpath("/html/body/div[1]/div/div[2]/div[2]/div[1]/div[2]/div/div/div/div[2]/div[3]/div[1]/table/tbody/tr[1]/td[5]/a")).click();
         driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/input[1]")).clear();
-        driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/input[1]")).sendKeys("Automate User");
+        driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/input[1]")).sendKeys("User " + ++userCount);
+        driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/input[1]")).clear(); //clear email field
+        driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/input[1]")).sendKeys("automate" + userCount + "@test.com");
         driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[1]/div[1]/div[3]/button[1]")).click();
         Thread.sleep(1000);
         driver.findElement(By.xpath("//*[@id=\"kt_app_body\"]/div[3]/div[1]/div[6]/button[1]")).sendKeys(Keys.ENTER);
