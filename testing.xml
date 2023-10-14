@@ -3,12 +3,12 @@
     <test name="usersCRUD">
         <classes>
             <class name="happyScenario.TestUsers">
-                <methods>
+<!--                <methods>-->
 <!--                    <include name="editLastUser"/>-->
-                    <include name="addUser"/>
-                    <include name="deleteUser"/>
-                    <include name="searchLastUser"/>
-                </methods>
+<!--&lt;!&ndash;                    <include name="addUser"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <include name="deleteUser"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <include name="searchLastUser"/>&ndash;&gt;-->
+<!--                </methods>-->
             </class>
         </classes>
     </test>

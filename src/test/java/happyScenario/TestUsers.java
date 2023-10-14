@@ -36,10 +36,14 @@ public class TestUsers {
         users.addUser(driver);
     }
     @Test (priority = 3)
+    public void checkCreationDate() throws InterruptedException {
+        users.checkCreationDate(driver);
+    }
+    @Test (priority = 4)
     public void editLastUser() throws InterruptedException {
         users.editLastUser(driver);
     }
-    @Test (priority = 4)
+    @Test (priority = 5)
     public void searchLastUser() throws InterruptedException {
         users.searchUser(driver);
     }

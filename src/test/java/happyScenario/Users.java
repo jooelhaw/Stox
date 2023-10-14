@@ -2,6 +2,11 @@ package happyScenario;
 
 import org.openqa.selenium.*;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
+
 public class Users {
     private static Integer userCount = 0;
     public Users(WebDriver driver) throws InterruptedException {
@@ -43,7 +48,7 @@ public class Users {
         Thread.sleep(2000);
         try {
             WebElement errorMessage = driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/small[1]"));
-            System.out.println("Found same name");
+            System.out.println("Found same name " + errorMessage.getText());
             //clear name field
             driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/input[1]")).clear();
             //clear email field
@@ -64,13 +69,15 @@ public class Users {
         try {
             driver.findElement(By.xpath("/html/body/div[1]/div/div[2]/div[2]/div[1]/div[2]/div/div/div/div[2]/div[3]/div[1]/table/tbody/tr[1]/td[5]/a")).click();
             addNewRole(driver);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
         }catch (Exception e){
             System.out.println("not Founded edit user button");
         }finally {
             driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/input[1]")).clear();
+            Thread.sleep(500);
             driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/input[1]")).sendKeys("User " + ++userCount);
             driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/input[1]")).clear(); //clear email field
+            Thread.sleep(500);
             driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/input[1]")).sendKeys("automate" + userCount + "@test.com");
             driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[1]/div[1]/div[3]/button[1]")).click();
             if (!checkUserExist(driver)){
@@ -88,7 +95,6 @@ public class Users {
             System.out.println("Result passed : 1 result " + resultCount);
         }
     }
-    // from chat gpt not working yet
     void addNewRole(WebDriver driver) throws InterruptedException {
         try {
             // Find and click the "New" button to add a new role
@@ -104,7 +110,11 @@ public class Users {
             // Deactivate the role
             WebElement deactivateRole = driver.findElement(By.xpath("//*[@id=\"kt_modal_1\"]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/label[1]/input[1]"));
             deactivateRole.click();
+        } catch (Exception e) {
+            System.out.println("Error: Not Found New? role button");
+//            addNewRole(driver);
 
+        }finally {
             // Add role name
             WebElement roleNameInput = driver.findElement(By.xpath("//*[@id=\"kt_modal_1\"]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/input[1]"));
             roleNameInput.clear();
@@ -120,18 +130,28 @@ public class Users {
             // Click the "Add Role" button
             WebElement addRoleButton = driver.findElement(By.xpath("//*[@id=\"kt_modal_1\"]/div[1]/div[1]/div[2]/div[1]/div[2]/div[3]/button[1]"));
             addRoleButton.click();
-
+            Thread.sleep(2000);
             // Check for error message (unique role name)
             try {
                 WebElement errorMessage = driver.findElement(By.xpath("//*[@id=\"kt_modal_1\"]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]"));
-                System.out.println("Error message -> unique role name");
-                Thread.sleep(1500);
-            } catch (NoSuchElementException e) {
+                System.out.println("Error message -> found " + errorMessage.getText());
+                Thread.sleep(500);
+                addNewRole(driver);
+            } catch (NoSuchElementException r) {
                 // Error message not found, continue
                 System.out.println("Error message not found, continue");
             }
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    void checkCreationDate(WebDriver driver) throws InterruptedException {
+        Thread.sleep(1000);
+        WebElement creationDate = driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[3]/div[1]/table[1]/tbody[1]/tr[1]/td[4]/span[1]"));
+//        creationDate.getText();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDateTime now = LocalDateTime.now();
+        if (creationDate.getText().equals(dtf.format(now))){
+            System.out.println("True; The creation date of last user is " + creationDate.getText());
         }
     }
 }
