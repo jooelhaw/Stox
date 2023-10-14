@@ -4,8 +4,10 @@
         <classes>
             <class name="happyScenario.TestUsers">
                 <methods>
+<!--                    <include name="editLastUser"/>-->
+                    <include name="addUser"/>
                     <include name="deleteUser"/>
-                    <include name="logIn"/>
+                    <include name="searchLastUser"/>
                 </methods>
             </class>
         </classes>
