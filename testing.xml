@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <suite name="users">
-    <test name="usersCRUD">
+    <test name="regression_users">
         <classes>
-            <class name="happyScenario.TestUsers">
-<!--                <methods>-->
-<!--                    <include name="editLastUser"/>-->
-<!--&lt;!&ndash;                    <include name="addUser"/>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <include name="deleteUser"/>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <include name="searchLastUser"/>&ndash;&gt;-->
-<!--                </methods>-->
+            <class name="happyScenario.RegUsers">
+
             </class>
         </classes>
     </test>
