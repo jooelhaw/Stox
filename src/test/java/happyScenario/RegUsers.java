@@ -33,7 +33,7 @@ public class RegUsers {
     @Test (priority = 1)
     public void add() throws InterruptedException{
 //        users.addUser(driver);
-        System.out.print("done");
+        roles.addRole(driver);
 
     }
     @Test (priority = 2)
@@ -43,6 +43,7 @@ public class RegUsers {
     @Test (priority = 3)
     public void editLast() throws InterruptedException {
 //        users.editLastUser(driver);
+        roles.editLastRole(driver);
     }
     @Test (priority = 4)
     public void searchLast() throws InterruptedException {
