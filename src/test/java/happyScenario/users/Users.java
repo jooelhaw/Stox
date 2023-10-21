@@ -1,4 +1,4 @@
-package happyScenario;
+package happyScenario.users;
 
 import org.openqa.selenium.*;
 
@@ -14,7 +14,7 @@ public class Users {
         driver.findElement(By.xpath("/html/body/div[1]/div/div[2]/div[1]/div[2]/div/div/div[1]/span")).click();
         driver.findElement(By.xpath("//*[@id=\"#kt_app_sidebar_menu\"]/div[1]/div/div/a[1]")).click();
     }
-    void deleteLastUser(WebDriver driver) throws InterruptedException {
+    public void deleteLastUser(WebDriver driver) throws InterruptedException {
         Thread.sleep(3000);
         driver.findElement(By.xpath("//div[@id='app']/div/div[2]/div[3]/div/table/tbody/tr/td[5]/button")).click();
         Thread.sleep(1000);
@@ -23,7 +23,7 @@ public class Users {
         driver.findElement(By.xpath("//*[@id=\"kt_app_body\"]/div[3]/div[1]/div[6]/button[1]")).sendKeys(Keys.ENTER);
     }
 
-    void addUser(WebDriver driver) throws InterruptedException {
+    public void addUser(WebDriver driver) throws InterruptedException {
         try{
             driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[1]/div[2]/div[1]/a[1]")).click();
             driver.findElement(By.xpath("//*[@id=\"app\"]/div/div/div/div[1]/div[2]/div/select/option[2]")).click();
@@ -64,7 +64,7 @@ public class Users {
         }
     }
 
-    void editLastUser(WebDriver driver) throws InterruptedException {
+    public void editLastUser(WebDriver driver) throws InterruptedException {
         Thread.sleep(1000);
         try {
             driver.findElement(By.xpath("/html/body/div[1]/div/div[2]/div[2]/div[1]/div[2]/div/div/div/div[2]/div[3]/div[1]/table/tbody/tr[1]/td[5]/a")).click();
@@ -86,7 +86,7 @@ public class Users {
             Thread.sleep(1000);
         }
     }
-    void searchUser(WebDriver driver) throws InterruptedException {
+    public void searchUser(WebDriver driver) throws InterruptedException {
         driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[1]/div[1]/div[1]/input[1]")).sendKeys("User " + userCount);
         Thread.sleep(3000);
         String resultCount = driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[3]/div[2]/div[1]/div[2]/span[5]")).getText();
@@ -144,7 +144,7 @@ public class Users {
         }
     }
 
-    void checkCreationDate(WebDriver driver) throws InterruptedException {
+    public void checkCreationDate(WebDriver driver) throws InterruptedException {
         Thread.sleep(1000);
         WebElement creationDate = driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[3]/div[1]/table[1]/tbody[1]/tr[1]/td[4]/span[1]"));
 //        creationDate.getText();

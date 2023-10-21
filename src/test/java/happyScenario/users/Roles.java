@@ -1,4 +1,4 @@
-package happyScenario;
+package happyScenario.users;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -27,7 +27,7 @@ public class Roles {
         wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         Thread.sleep(1000); // wait to load table of roles
     }
-    void addRole(WebDriver driver) throws InterruptedException {
+    public void addRole(WebDriver driver) throws InterruptedException {
         try{
             lastRoleID = Integer.valueOf(wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[1]/div/div[2]/div[2]/div[1]/div[2]/div/div/div/div[2]/div[3]/div[1]/table/tbody/tr[1]/td[1]/span"))).getText());
             driver.findElement(By.xpath("//*[@id=\"app\"]/div/div[1]/div[2]/div/a")).click(); // add role button
@@ -64,7 +64,7 @@ public class Roles {
             return true;
         }
     }
-    void editLastRole(WebDriver driver) throws InterruptedException {
+    public void editLastRole(WebDriver driver) throws InterruptedException {
 
         try {
             // click edit button on last added role
