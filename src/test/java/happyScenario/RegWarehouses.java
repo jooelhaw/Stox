@@ -30,4 +30,9 @@ public class RegWarehouses {
     public void addWarehouse(){
         warehouse.addWarehouse(driver);
     }
+
+    @Test(priority = 2)
+    public void editLastWarehouseLayout(){
+        warehouse.editWarehouse(driver);
+    }
 }
