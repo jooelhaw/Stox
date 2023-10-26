@@ -44,7 +44,7 @@ public class Warehouses {
             nameEnField = wait.until(ExpectedConditions.elementToBeClickable(
                     By.xpath("(//input[@type='text'])[1]")));
             nameEnField.clear(); // clear warehouse name ENGLISH field
-            nameEnField.sendKeys("Warehouse " + ++lastWarehouseID); // add warehouse name ENGLISH
+            nameEnField.sendKeys("Warehouse " + ++ lastWarehouseID); // add warehouse name ENGLISH
 
             // add arabic name
             nameArField = driver.findElement(
@@ -107,9 +107,6 @@ public class Warehouses {
             ));
             confirmButton.sendKeys(Keys.ENTER);
         }
-
-
-
     }
 
     // edit warehouse layout
