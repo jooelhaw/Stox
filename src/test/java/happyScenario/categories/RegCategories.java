@@ -1,5 +1,7 @@
-package happyScenario;
+package happyScenario.categories;
 
+import happyScenario.Constants;
+import happyScenario.categories.Categories;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,9 +10,9 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class RegWarehouses {
+public class RegCategories {
+    Categories categories;
     WebDriver driver;
-    Warehouses warehouse;
     @BeforeTest
     public void openBrowser() throws InterruptedException {
         WebDriverManager.chromedriver().setup();
@@ -19,21 +21,31 @@ public class RegWarehouses {
         driver.findElement(By.name("email")).sendKeys("admin@admin.com");
         driver.findElement(By.name("password")).sendKeys("password");
         driver.findElement(By.cssSelector("button[type=submit]")).click(); // logged in admin stage
-        warehouse = new Warehouses(driver);
+        categories = new Categories(driver);
     }
-
     @AfterTest
-    public void closeBrowser() {
+    public void closeBrowser(){
         driver.quit();
     }
     @Test(priority = 1)
-    public void addWarehouse(){
-        warehouse.addWarehouse(driver);
+    public void add(){
+        categories.addCategory(driver,null);
     }
-
     @Test(priority = 2)
-    public void editLastWarehouseLayout(){
-        warehouse.editWarehouse(driver);
+    public void addSub(){
+        categories.addSubCategories(driver);
+    }
+    @Test(priority = 3)
+    public void checkSubCategoriesLevel() throws InterruptedException {
+        categories.checkMaxLevel(driver);
+    }
+    @Test(priority = 4)
+    public void edit(){
+        categories.editLastCategory(driver);
+    }
+    @Test(priority = 5)
+    public void delete(){
+        categories.deleteLastCategory(driver);
     }
 
 }

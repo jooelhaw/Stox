@@ -1,5 +1,6 @@
-package happyScenario;
+package happyScenario.users;
 
+import happyScenario.Constants;
 import happyScenario.users.Roles;
 import happyScenario.users.Users;
 import io.github.bonigarcia.wdm.WebDriverManager;
