@@ -2,7 +2,7 @@
 <suite name="users">
     <test name="regression_users">
         <classes>
-            <class name="happyScenario.users.RegUsers">
+            <class name="happyScenario.backoffice.users.RegUsers">
 
             </class>
         </classes>

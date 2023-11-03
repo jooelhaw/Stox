@@ -1,4 +1,4 @@
-package happyScenario.warehouses;
+package happyScenario.backoffice.warehouses;
 
 import happyScenario.Constants;
 import io.github.bonigarcia.wdm.WebDriverManager;

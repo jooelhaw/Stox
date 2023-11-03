@@ -2,7 +2,7 @@
 <suite name="categories">
     <test name="reg_categories">
         <classes>
-            <class name="happyScenario.categories.RegCategories">
+            <class name="happyScenario.backoffice.categories.RegCategories">
 
             </class>
         </classes>

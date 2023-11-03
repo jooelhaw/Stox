@@ -1,7 +1,6 @@
-package happyScenario.categories;
+package happyScenario.backoffice.categories;
 
 import happyScenario.Constants;
-import happyScenario.categories.Categories;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

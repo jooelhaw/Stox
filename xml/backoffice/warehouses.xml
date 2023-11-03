@@ -2,7 +2,7 @@
 <suite name="warehouses">
     <test name="warehouses_crud">
         <classes>
-            <class name="happyScenario.warehouses.RegWarehouses">
+            <class name="happyScenario.backoffice.warehouses.RegWarehouses">
 
             </class>
         </classes>

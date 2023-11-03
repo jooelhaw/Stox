@@ -1,4 +1,4 @@
-package happyScenario.categories;
+package happyScenario.backoffice.categories;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

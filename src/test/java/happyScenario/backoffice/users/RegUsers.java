@@ -1,8 +1,6 @@
-package happyScenario.users;
+package happyScenario.backoffice.users;
 
 import happyScenario.Constants;
-import happyScenario.users.Roles;
-import happyScenario.users.Users;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

@@ -1,4 +1,4 @@
-package happyScenario.users;
+package happyScenario.backoffice.users;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;

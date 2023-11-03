@@ -1,4 +1,4 @@
-package happyScenario.warehouses;
+package happyScenario.backoffice.warehouses;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
