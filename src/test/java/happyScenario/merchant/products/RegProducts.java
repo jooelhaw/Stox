@@ -13,7 +13,7 @@ public class RegProducts {
     WebDriver driver;
     Products products;
     @BeforeTest
-    public void openBrowser(){
+    public void openBrowser() throws InterruptedException {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.get(Constants.MER_URL_STAGE);
@@ -23,11 +23,12 @@ public class RegProducts {
         products = new Products(driver);
     }
     @Test(priority = 1)
-    public void add(){
-
+    public void add() throws InterruptedException {
+        products.addProduct(driver);
+        products.addExistProduct(driver);
     }
-    @AfterTest
-    public void closeBrowser(){
-        driver.quit();
-    }
+//    @AfterTest
+//    public void closeBrowser() throws InterruptedException {
+//        driver.quit();
+//    }
 }
