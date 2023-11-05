@@ -24,6 +24,7 @@ public class Products {
     WebElement weightField;
     WebElement descriptionField;
     WebElement globalSearch;
+    WebElement deleteButon;
     WebElement searchBar;
     WebElement imagesField;
     Integer lastProductID;
@@ -64,6 +65,11 @@ public class Products {
         // find search bar
         searchBar = wait.until(ExpectedConditions.elementToBeClickable(
                 By.xpath("/html[1]/body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/input[1]")));
+
+        // find first delete button
+        deleteButon = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("/html[1]/body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[3]/div[1]/table[1]/tbody[1]/tr[1]/td[9]/button[1]/span[1]/i[1]")
+        ));
     }
     public void addProduct(WebDriver driver) {
         try {
@@ -135,11 +141,10 @@ public class Products {
         }else {
             skuID = 73;
         }
-
+        driver.navigate().refresh();
 
         locateProductsElements(driver);
 
-        searchBar.click();
         searchBar.clear();
         Thread.sleep(700);
         searchBar.sendKeys("pro75"); // send search key SKU pro75
@@ -154,6 +159,7 @@ public class Products {
     }
 
     public void insertExistProduct(WebDriver driver) throws InterruptedException {
+        driver.navigate().refresh();
         locateProductsElements(driver);
         globalSearch.sendKeys("pro75");
         Thread.sleep(1500);
@@ -165,7 +171,31 @@ public class Products {
         // click insert button
         insertButton.click();
         checkProductAdded(driver);
+    }
+    public void deleteFromList(WebDriver driver) throws InterruptedException {
+        locateProductsElements(driver);
+        searchBar.click();
+        searchBar.clear();
+        Thread.sleep(700);
+        searchBar.sendKeys("pro75"); // send search key SKU pro75
 
+        // click first delete button to remove from the list
+        deleteButon.click();
+        searchBar.clear();
 
+    }
+    public void removeFromList(WebDriver driver){
+        locateProductsElements(driver);
+
+        // send search sku
+        globalSearch.clear();
+        globalSearch.sendKeys("pro75");
+
+        // set insert button
+        insertButton = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/ul[1]/div[1]/li[1]/div[1]/div[2]/button[1]/span[1]/i[1]")
+        ));
+        // click insert button
+        insertButton.click();
     }
 }

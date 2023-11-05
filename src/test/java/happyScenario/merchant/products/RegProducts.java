@@ -30,9 +30,17 @@ public class RegProducts {
     public void addExist() throws InterruptedException {
         products.addExistProduct(driver);
     }
-    @Test(priority = 3)
+    @Test(priority = 4)
     public void insertExist() throws InterruptedException {
         products.insertExistProduct(driver);
+    }
+    @Test(priority = 3)
+    public void delete() throws InterruptedException {
+        products.deleteFromList(driver);
+    }
+    @Test(priority = 5)
+    public void remove(){
+        products.removeFromList(driver);
     }
     @AfterTest
     public void closeBrowser() throws InterruptedException {
