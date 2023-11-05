@@ -14,6 +14,8 @@ public class Products {
     WebElement saveButton;
     WebElement nameField;
     WebElement skuField;
+    WebElement insertButton;
+    String[] cuUrl;
     WebElement brandField;
     WebElement categoryField;
     WebElement lengthField;
@@ -21,6 +23,8 @@ public class Products {
     WebElement widthField;
     WebElement weightField;
     WebElement descriptionField;
+    WebElement globalSearch;
+    WebElement searchBar;
     WebElement imagesField;
     Integer lastProductID;
     public Products(WebDriver driver) throws InterruptedException {
@@ -36,7 +40,7 @@ public class Products {
                 ))).getText());
     }
 
-    public void locateElements(WebDriver driver){
+    public void locateAddingElements(WebDriver driver){
         // set sku field
         skuField = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
                 "/html[1]/body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/input[1]"
@@ -50,7 +54,18 @@ public class Products {
         // click save button
         saveButton = driver.findElement(By.xpath("//button[@type='button']"));
     }
-    public void addProduct(WebDriver driver) throws InterruptedException {
+
+    public void locateProductsElements(WebDriver driver){
+        // find global search bar
+        globalSearch = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/input[1]")
+        ));
+
+        // find search bar
+        searchBar = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("/html[1]/body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/input[1]")));
+    }
+    public void addProduct(WebDriver driver) {
         try {
             wait.until(ExpectedConditions.elementToBeClickable( // click add product button
                     By.xpath("//a[normalize-space()='Add Product']")
@@ -60,7 +75,7 @@ public class Products {
         }catch (Exception e){
             System.out.println("You are not in Products page");
         }finally {
-            locateElements(driver);
+            locateAddingElements(driver);
 
             nameField.sendKeys("Product " + ++lastProductID);
 
@@ -96,28 +111,61 @@ public class Products {
         }catch (Exception e){
             System.out.println("You are not in Products page");
         }finally {
-            locateElements(driver);
+            locateAddingElements(driver);
             skuField.sendKeys("pro75");
             WebElement existButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
                         "/html/body/div[1]/div/div[2]/div[2]/div[1]/div[2]/div/div/div/div[2]/div[2]/div[1]/div/div[2]/a"
                 )));
             existButton.click();
-            String[] cuUrl = driver.getCurrentUrl().split("/");
-            Integer skuID = Integer.valueOf(cuUrl[cuUrl.length - 1]);
+            cuUrl = driver.getCurrentUrl().split("/");
+
 
             // click add to my products button
             driver.findElement(By.xpath("//button[normalize-space()='Add to my products']")).click();
 
-            // find search bar
-            wait.until(ExpectedConditions.elementToBeClickable(
-                    By.xpath("/html[1]/body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/input[1]"))).sendKeys("pro75");
-            Thread.sleep(2000);
-            // Assert id exist
-            lastProductID = Integer.valueOf(wait.until(ExpectedConditions.elementToBeClickable( // get last product id
-                    By.xpath("/html[1]/body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[3]/div[1]/table[1]/tbody[1]/tr[1]/td[1]/span[1]"
-                    ))).getText());
-            Assert.assertEquals(lastProductID,skuID);
-
+            checkProductAdded(driver);
         }
+    }
+
+    private void checkProductAdded(WebDriver driver) throws InterruptedException {
+        Integer skuID;
+        // sku id
+        if (cuUrl != null) {
+            skuID = Integer.valueOf(cuUrl[cuUrl.length - 1]);
+        }else {
+            skuID = 73;
+        }
+
+
+        locateProductsElements(driver);
+
+        searchBar.click();
+        searchBar.clear();
+        Thread.sleep(700);
+        searchBar.sendKeys("pro75"); // send search key SKU pro75
+        Thread.sleep(2000);
+
+        // Assert id exist
+        lastProductID = Integer.valueOf(wait.until(ExpectedConditions.elementToBeClickable( // get last product id
+                By.xpath("/html[1]/body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[3]/div[1]/table[1]/tbody[1]/tr[1]/td[1]/span[1]"
+                ))).getText());
+        Assert.assertEquals(lastProductID,skuID);
+
+    }
+
+    public void insertExistProduct(WebDriver driver) throws InterruptedException {
+        locateProductsElements(driver);
+        globalSearch.sendKeys("pro75");
+        Thread.sleep(1500);
+
+        // set insert button
+        insertButton = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/ul[1]/div[1]/li[1]/div[1]/div[2]/button[1]/span[1]/i[1]")
+        ));
+        // click insert button
+        insertButton.click();
+        checkProductAdded(driver);
+
+
     }
 }

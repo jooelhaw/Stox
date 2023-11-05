@@ -19,16 +19,23 @@ public class RegProducts {
         driver.get(Constants.MER_URL_STAGE);
         driver.findElement(By.name("email")).sendKeys(Constants.USER_MER_PRODUCTION);
         driver.findElement(By.name("password")).sendKeys(Constants.PASS_MER_PRODUCTION);
-        driver.findElement(By.cssSelector("button[type=submit]")).click(); // logged in admin stage
+        driver.findElement(By.cssSelector("button[type=submit]")).click(); // logged in merchant stage
         products = new Products(driver);
     }
     @Test(priority = 1)
-    public void add() throws InterruptedException {
+    public void add() {
         products.addProduct(driver);
+    }
+    @Test(priority = 2)
+    public void addExist() throws InterruptedException {
         products.addExistProduct(driver);
     }
-//    @AfterTest
-//    public void closeBrowser() throws InterruptedException {
-//        driver.quit();
-//    }
+    @Test(priority = 3)
+    public void insertExist() throws InterruptedException {
+        products.insertExistProduct(driver);
+    }
+    @AfterTest
+    public void closeBrowser() throws InterruptedException {
+        driver.quit();
+    }
 }
