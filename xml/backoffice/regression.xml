@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<suite name="regression">
+    <test name="reg_backoffice">
+        <classes>
+            <class name="happyScenario.backoffice.users.RegUsers">
+            </class>
+            <class name="happyScenario.backoffice.categories.RegCategories">
+            </class>
+            <class name="happyScenario.backoffice.warehouses.RegWarehouses">
+            </class>
+        </classes>
+    </test>
+</suite>

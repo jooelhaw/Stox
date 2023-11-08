@@ -29,7 +29,11 @@ public class Roles {
     }
     public void addRole(WebDriver driver) throws InterruptedException {
         try{
-            lastRoleID = Integer.valueOf(wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[1]/div/div[2]/div[2]/div[1]/div[2]/div/div/div/div[2]/div[3]/div[1]/table/tbody/tr[1]/td[1]/span"))).getText());
+            try {
+                lastRoleID = Integer.valueOf(wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[1]/div/div[2]/div[2]/div[1]/div[2]/div/div/div/div[2]/div[3]/div[1]/table/tbody/tr[1]/td[1]/span"))).getText());
+            }catch (Exception e){
+                lastRoleID = 1;
+            }
             driver.findElement(By.xpath("//*[@id=\"app\"]/div/div[1]/div[2]/div/a")).click(); // add role button
             driver.findElement(By.xpath("//*[@id=\"kt_roles_select_all\"]")).click(); // select all permissions
 

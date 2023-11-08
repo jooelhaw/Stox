@@ -35,10 +35,13 @@ public class Products {
         )).click();
         System.out.println(driver.getCurrentUrl().equals("https://merchants.stox-eg.com/products"));
         Thread.sleep(1500);
-
-        lastProductID = Integer.valueOf(wait.until(ExpectedConditions.elementToBeClickable( // get last product id
-                By.xpath("/html[1]/body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[3]/div[1]/table[1]/tbody[1]/tr[1]/td[1]/span[1]"
-                ))).getText());
+        try {
+            lastProductID = Integer.valueOf(wait.until(ExpectedConditions.elementToBeClickable( // get last product id
+                    By.xpath("/html[1]/body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[3]/div[1]/table[1]/tbody[1]/tr[1]/td[1]/span[1]"
+                    ))).getText());
+        }catch (Exception e){
+            lastProductID = 1;
+        }
     }
 
     public void locateAddingElements(WebDriver driver){
@@ -118,7 +121,7 @@ public class Products {
             System.out.println("You are not in Products page");
         }finally {
             locateAddingElements(driver);
-            skuField.sendKeys("pro75");
+            skuField.sendKeys("pro" + lastProductID);
             WebElement existButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
                         "/html/body/div[1]/div/div[2]/div[2]/div[1]/div[2]/div/div/div/div[2]/div[2]/div[1]/div/div[2]/a"
                 )));
@@ -147,7 +150,7 @@ public class Products {
 
         searchBar.clear();
         Thread.sleep(700);
-        searchBar.sendKeys("pro75"); // send search key SKU pro75
+        searchBar.sendKeys("pro" + lastProductID); // send search key SKU pro75
         Thread.sleep(2000);
 
         // Assert id exist
@@ -161,7 +164,7 @@ public class Products {
     public void insertExistProduct(WebDriver driver) throws InterruptedException {
         driver.navigate().refresh();
         locateProductsElements(driver);
-        globalSearch.sendKeys("pro75");
+        globalSearch.sendKeys("pro" + lastProductID);
         Thread.sleep(1500);
 
         // set insert button
@@ -177,7 +180,7 @@ public class Products {
         searchBar.click();
         searchBar.clear();
         Thread.sleep(700);
-        searchBar.sendKeys("pro75"); // send search key SKU pro75
+        searchBar.sendKeys("pro" + lastProductID); // send search key SKU pro75
 
         // click first delete button to remove from the list
         deleteButon.click();
@@ -189,7 +192,7 @@ public class Products {
 
         // send search sku
         globalSearch.clear();
-        globalSearch.sendKeys("pro75");
+        globalSearch.sendKeys("pro" + lastProductID);
 
         // set insert button
         insertButton = wait.until(ExpectedConditions.elementToBeClickable(

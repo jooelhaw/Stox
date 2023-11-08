@@ -30,9 +30,13 @@ public class Warehouses {
         wait.until(ExpectedConditions.elementToBeClickable( // open warehouses page
                 By.xpath("//a[@href='https://backofficetest.stox-eg.com/warehouses']"))).click();
         Thread.sleep(1500);
-        lastWarehouseID = Integer.valueOf(wait.until(ExpectedConditions.elementToBeClickable( // catch last warehouse id
-                By.xpath("/html[1]/body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[3]/div[1]/table[1]/tbody[1]/tr[1]/td[1]/span[1]"))).getText());
-        System.out.println("Last warehouse ID:  " + lastWarehouseID);
+        try {
+            lastWarehouseID = Integer.valueOf(wait.until(ExpectedConditions.elementToBeClickable( // catch last warehouse id
+                    By.xpath("/html[1]/body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[3]/div[1]/table[1]/tbody[1]/tr[1]/td[1]/span[1]"))).getText());
+            System.out.println("Last warehouse ID:  " + lastWarehouseID);
+        }catch (Exception e){
+            lastWarehouseID = 1;
+        }
     }
     public void addWarehouse(WebDriver driver){
         try {

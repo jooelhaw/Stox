@@ -5,11 +5,10 @@
             <class name="happyScenario.merchant.products.RegProducts">
                 <methods>
                     <include name="insertExist"/>
-                    <exclude name="add"/>
+                    <include name="add"/>
                     <include name="addExist"/>
                     <include name="remove"/>
                     <include name="delete"/>
-
                 </methods>
 
             </class>
