@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<suite name="categories">
+    <test name="reg_categories">
+        <classes>
+            <class name="happyScenario.backoffice.categories.RegCategories">
+
+            </class>
+        </classes>
+    </test>
+</suite>
