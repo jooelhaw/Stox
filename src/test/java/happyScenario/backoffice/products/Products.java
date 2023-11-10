@@ -1,9 +1,12 @@
 package happyScenario.backoffice.products;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
@@ -23,6 +26,8 @@ public class Products {
     WebElement widthField;
     WebElement weightField;
     WebElement descriptionField;
+    WebElement capacityField;
+    WebElement storageUnit;
     WebElement deleteButton;
     WebElement editButton;
     WebElement searchBar;
@@ -44,18 +49,28 @@ public class Products {
         }
     }
 
-    public void locateAddingElements(WebDriver driver){
-        // set sku field
+    public void locateAddingElements(WebDriver driver) {
+        // find sku field
         skuField = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
-                "/html[1]/body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/input[1]"
+                "//input[@placeholder='Type-size-color ex.(polo-xl-red)']"
         )));
 
-        // set name field
+        // find name field
         nameField = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
                 "//div[@class='col-md']//input[@type='text']"
         )));
 
-        // click save button
+        // find storage unit field
+        storageUnit = driver.findElement(
+                By.xpath("/html/body/div[1]/div/div[2]/div[2]/div[1]/div[2]/div/div/div/div[2]/div[4]/div[1]/div/div")
+        );
+
+        // find capacity field
+        capacityField = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//div[@class='col-md-6']//input[@type='number']")
+        ));
+
+        // find save button
         saveButton = driver.findElement(By.xpath("//button[@type='button']"));
     }
 
@@ -76,7 +91,7 @@ public class Products {
         ));
 
     }
-    public void addProduct(WebDriver driver) {
+    public void addProduct(WebDriver driver) throws InterruptedException {
         try {
             wait.until(ExpectedConditions.elementToBeClickable( // click add product button
                     By.xpath("//a[normalize-space()='Add Product']")
@@ -140,6 +155,7 @@ public class Products {
         wait.until(ExpectedConditions.elementToBeClickable( // products in side menu
                 By.xpath("//*[@id=\"#kt_app_sidebar_menu\"]/div[5]/a")
         )).click();
+        Thread.sleep(700);
 
         locateProductsElements(driver);
 
@@ -162,6 +178,58 @@ public class Products {
         )).click();
 
         searchBar.clear();
+    }
+    public void editProduct(WebDriver driver) throws InterruptedException {
+        wait.until(ExpectedConditions.elementToBeClickable( // products in side menu
+                By.xpath("//*[@id=\"#kt_app_sidebar_menu\"]/div[5]/a")
+        )).click();
+
+        Thread.sleep(1500);
+
+        // try to find last product ID
+        try {
+            lastProductID = Integer.valueOf(wait.until(ExpectedConditions.elementToBeClickable( // get last product id
+                    By.xpath("/html[1]/body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[3]/div[1]/table[1]/tbody[1]/tr[1]/td[1]/span[1]"
+                    ))).getText());
+        }catch (Exception e){
+            addProduct(driver);
+
+            wait.until(ExpectedConditions.elementToBeClickable( // products in side menu
+                    By.xpath("//*[@id=\"#kt_app_sidebar_menu\"]/div[5]/a")
+            )).click();
+            Thread.sleep(1500);
+
+            lastProductID = Integer.valueOf(wait.until(ExpectedConditions.elementToBeClickable( // get last product id
+                    By.xpath("/html[1]/body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[3]/div[1]/table[1]/tbody[1]/tr[1]/td[1]/span[1]"
+                    ))).getText());
+        }
+        Thread.sleep(700);
+        locateProductsElements(driver);
+
+        searchBar.click();
+        searchBar.clear();
+        searchBar.sendKeys("pro" + lastProductID); // send search key SKU
+
+        // click and locate edit element
+        editButton.click();
+        locateAddingElements(driver);
+
+        // change capacity to 2
+        capacityField.clear();
+        capacityField.sendKeys("2");
+
+        // select storage unit bins
+        storageUnit.click();
+        Thread.sleep(500);
+        Actions actions = new Actions(driver);
+        actions.sendKeys(Keys.ENTER).perform();
+
+        // click save button
+        saveButton.click();
+
+        // click enter to confirm editing
+        actions.sendKeys(Keys.ENTER).perform();
+
 
     }
 }

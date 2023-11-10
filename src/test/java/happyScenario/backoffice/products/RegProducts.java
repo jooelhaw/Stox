@@ -23,12 +23,16 @@ public class RegProducts {
         products = new Products(driver);
     }
     @Test(priority = 1)
-    public void add() {
+    public void add() throws InterruptedException {
         products.addProduct(driver);
     }
-    @Test(priority = 2)
+    @Test(priority = 3)
     public void delete() throws InterruptedException {
         products.deleteFromList(driver);
+    }
+    @Test(priority = 2)
+    public void edit() throws InterruptedException {
+        products.editProduct(driver);
     }
 
     @AfterTest

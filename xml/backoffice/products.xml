@@ -6,8 +6,8 @@
                 <methods>
                     <include name="add"/>
                     <include name="delete"/>
+                    <include name="edit"/>
                 </methods>
-
             </class>
         </classes>
     </test>
