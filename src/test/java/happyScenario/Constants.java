@@ -7,6 +7,8 @@ public class Constants {
     // emails
     public static String USER_MER_PRODUCTION = "jooelhaw@gmail.com";
     public static String USER_MER_STAGING = "jooelhaw@gmail.com";
+    public static String USER_ADMIN_STAGING = "admin@admin.com";
+    public static String PASS_ADMIN_STAGING = "password";
 
     // passwords
     public static String PASS_MER_PRODUCTION = "123456";
