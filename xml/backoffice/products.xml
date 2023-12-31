@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<suite name="products">
+    <test name="products_crud">
+        <classes>
+            <class name="happyScenario.backoffice.products.RegProducts">
+                <methods>
+                    <include name="add"/>
+                    <include name="delete"/>
+                    <include name="edit"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
