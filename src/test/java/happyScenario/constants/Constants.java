@@ -1,4 +1,4 @@
-package happyScenario;
+package happyScenario.constants;
 
 public class Constants {
     public static String ADMIN_URL_STAGE = "https://backofficetest.stox-eg.com/login";
@@ -6,7 +6,7 @@ public class Constants {
 
     // emails
     public static String USER_MER_PRODUCTION = "jooelhaw@gmail.com";
-    public static String USER_MER_STAGING = "jooelhaw@gmail.com";
+    public static String USER_MER_STAGING = "stox@test.com";
     public static String USER_ADMIN_STAGING = "admin@admin.com";
     public static String PASS_ADMIN_STAGING = "password";
 

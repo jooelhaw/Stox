@@ -27,7 +27,7 @@
             <artifactId>webdrivermanager</artifactId>
             <version>5.5.3</version>
         </dependency>
-        <!-- test ng-->
+        <!-- test ng://-->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>

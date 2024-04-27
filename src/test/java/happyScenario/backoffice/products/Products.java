@@ -35,10 +35,7 @@ public class Products {
     Integer lastProductID;
     public Products(WebDriver driver) throws InterruptedException {
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.elementToBeClickable( // products in side menu
-                By.xpath("//*[@id=\"#kt_app_sidebar_menu\"]/div[5]/a")
-        )).click();
-        System.out.println(driver.getCurrentUrl().equals("https://merchants.stox-eg.com/products"));
+        driver.navigate().to("https://backofficetest.stox-eg.com/products");
         Thread.sleep(1500);
         try {
             lastProductID = Integer.valueOf(wait.until(ExpectedConditions.elementToBeClickable( // get last product id
@@ -60,10 +57,10 @@ public class Products {
                 "//div[@class='col-md']//input[@type='text']"
         )));
 
-        // find storage unit field
-        storageUnit = driver.findElement(
-                By.xpath("/html/body/div[1]/div/div[2]/div[2]/div[1]/div[2]/div/div/div/div[2]/div[4]/div[1]/div/div")
-        );
+//        // find storage unit field
+//        storageUnit = driver.findElement(
+//                By.xpath("/html/body/div[1]/div/div[2]/div[2]/div[1]/div[2]/div/div/div/div[2]/div[4]/div[1]/div/div")
+//        );
 
         // find capacity field
         capacityField = wait.until(ExpectedConditions.elementToBeClickable(

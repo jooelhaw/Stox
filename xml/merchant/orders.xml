@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<suite name="orders">
+    <test name="ordersCrud">
+        <classes>
+            <class name="happyScenario.merchant.orders.ConfigOrders">
+                <methods>
+                    <include name="addMandatoryOrders"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
