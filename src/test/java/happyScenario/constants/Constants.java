@@ -10,6 +10,7 @@ public class Constants {
     public static String USER_ADMIN_STAGING = "admin@admin.com";
     public static String PASS_ADMIN_STAGING = "password";
 
+
     // passwords
     public static String PASS_MER_PRODUCTION = "123456";
     public static String PASS_MER_STAGING = "123456";
