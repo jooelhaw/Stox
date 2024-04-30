@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <suite name="orders">
-    <test name="ordersCrud">
+    <test name="addOrderWithMandatoryData">
         <classes>
             <class name="happyScenario.merchant.orders.ConfigOrders">
                 <methods>
