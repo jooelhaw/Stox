@@ -37,31 +37,31 @@ public class AddOrder {
 
     // fill data in mandatory fields
     public static void addMandatoryOrder(WebDriver driver, WebDriverWait wait) throws InterruptedException {
-        // mobile1
-        driver.findElement(By.xpath(CreateOrder.mobile1)).clear();
+        // fill receiver details
+        driver.findElement(By.xpath(CreateOrder.mobile1)).clear(); // mobile1
         sendKeys(wait, CreateOrder.mobile1, "01050528862");
         driver.findElement(By.xpath(CreateOrder.mobile1)).sendKeys(Keys.ENTER);
-        // receiver name
-        driver.findElement(By.xpath(CreateOrder.receiverName)).clear();
+
+        driver.findElement(By.xpath(CreateOrder.receiverName)).clear(); // receiver name
         sendKeys(wait, CreateOrder.receiverName, "Yousef El-haw");
-        // address
-        driver.findElement(By.xpath(CreateOrder.address)).clear();
+
+        driver.findElement(By.xpath(CreateOrder.address)).clear(); // address
         sendKeys(wait, CreateOrder.address, "Egypt - Gharbia - Tanta - Mohamed halawa st");
-        // area search
-        sendKeys(wait, CreateOrder.area, "tanta");
-        // area select
-        driver.findElement(By.xpath(CreateOrder.areaChild)).click();
-        // payment type open dropdown menu
-        driver.findElement(By.xpath(CreateOrder.payment)).click();
-        // select CC payment
-        driver.findElement(By.xpath(CreateOrder.payment)).sendKeys(Keys.DOWN, Keys.ENTER);
-        // sku1
-        driver.findElement(By.xpath(CreateOrder.sku1)).clear();
+
+        sendKeys(wait, CreateOrder.area, "tanta"); // area search
+        driver.findElement(By.xpath(CreateOrder.areaChild)).click(); // area select
+
+        // fill payment section
+        driver.findElement(By.xpath(CreateOrder.payment)).click(); // payment type open dropdown menu
+        driver.findElement(By.xpath(CreateOrder.payment)).sendKeys(Keys.DOWN, Keys.ENTER); // select CC payment
+
+        // fill product section
+        driver.findElement(By.xpath(CreateOrder.sku1)).clear(); // sku1
         sendKeys(wait, CreateOrder.sku1, "test-product");
+
         Thread.sleep(500);
 
-        // sku1QTY
-        driver.findElement(By.xpath(CreateOrder.sku1Qty)).clear();
+        driver.findElement(By.xpath(CreateOrder.sku1Qty)).clear(); // sku1QTY
         driver.findElement(By.xpath(CreateOrder.sku1Qty)).click();
         driver.findElement(By.xpath(CreateOrder.sku1Qty)).sendKeys(Keys.ARROW_UP, Keys.ARROW_UP);
     }

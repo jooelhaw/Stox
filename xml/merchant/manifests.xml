@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<suite name="manifests">
+    <test name="addManualManifest">
+        <classes>
+            <class name="happyScenario.merchant.manifests.ConfigManifests">
+                <methods>
+                    <include name="addManifest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

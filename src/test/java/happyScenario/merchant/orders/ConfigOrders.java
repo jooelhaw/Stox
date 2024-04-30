@@ -35,7 +35,6 @@ public class ConfigOrders {
         System.out.println("before adding" + lastOrderID);
         driver.navigate().to("https://merchantstest.stox-eg.com/orders/create"); // navigate to create order page
 
-
     }
 
     @Test(priority = 1)
@@ -50,4 +49,5 @@ public class ConfigOrders {
         assert (Integer.parseInt(addOrder.lastOrderID) > Integer.parseInt(lastOrderID));
 
     }
+
 }

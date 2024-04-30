@@ -10,7 +10,8 @@ public class Learnings {
 //        static Integer userCount = 9;
     public static void main(String[] args) {
         String[] s = "https://merchantstest.stox-eg.com/products/79".split("/");
-        System.out.println(s[s.length -1 ]);
+
+        System.out.println(s[s.length - 1]);
 
     }
 }
