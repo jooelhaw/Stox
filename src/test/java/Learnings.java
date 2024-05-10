@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 public class Learnings {
 //        static Integer userCount = 9;
     public static void main(String[] args) {
-        String[] s = "https://merchantstest.stox-eg.com/products/79".split("/");
+        String[] s = "https://merchantstest.stox-eg.com/products/79".split("/"); // dfs
 
         System.out.println(s[s.length - 1]);
 
