@@ -1,4 +1,4 @@
-package happyScenario.merchant.products;
+package happyScenario.merchant.manifests.products;
 
 import happyScenario.constants.Constants;
 import io.github.bonigarcia.wdm.WebDriverManager;

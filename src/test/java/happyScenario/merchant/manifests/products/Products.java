@@ -1,4 +1,4 @@
-package happyScenario.merchant.products;
+package happyScenario.merchant.manifests.products;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

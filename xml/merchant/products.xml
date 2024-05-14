@@ -2,7 +2,7 @@
 <suite name="products">
     <test name="products_crud">
         <classes>
-            <class name="happyScenario.merchant.products.RegProducts">
+            <class name="happyScenario.merchant.manifests.products.RegProducts">
                 <methods>
                     <include name="insertExist"/>
                     <include name="add"/>

@@ -1,0 +1,21 @@
+Certainly, here's a combined version of the commands:
+
+
+git stash save "last" && git pull && git stash pop stash@{0} && git commit -m "Your commit message" && git push
+
+
+
+
+git stash save "last" 
+git pull 
+git stash pop stash@{0} 
+git commit -m "Your commit message" 
+git push
+
+
+This command will:
+1. Stash changes with the name "last".
+2. Pull changes from the remote repository.
+3. Pop the changes from the stash with the name "last".
+4. Commit the changes with your specified commit message.
+5. Push the changes to the remote repository.

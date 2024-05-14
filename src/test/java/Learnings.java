@@ -7,7 +7,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Learnings {
-//        static Integer userCount = 9;
     public static void main(String[] args) {
         String[] s = "https://merchantstest.stox-eg.com/products/79".split("/");
 
